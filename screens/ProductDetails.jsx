@@ -5,7 +5,6 @@ const ProductDetails = () => {
   return (
     <View>
       <Text>ProductDetails</Text>
-      <Text>ProductDetails4</Text>
     </View>
   )
 }
