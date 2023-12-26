@@ -5,6 +5,7 @@ const ProductDetails = () => {
   return (
     <View>
       <Text>ProductDetails</Text>
+      <Text>ProductDetails2</Text>
     </View>
   )
 }
