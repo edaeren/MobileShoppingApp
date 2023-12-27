@@ -57,6 +57,7 @@ export default function App() {
           component={ProductDetails}
           options={{headerShown:false}}
         />
+         
      
       </Stack.Navigator>
     </NavigationContainer>

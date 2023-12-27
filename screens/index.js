@@ -3,8 +3,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
-/*import Home from "../screens/Home";
-import Profile from "../screens/Profile";*/
+import NewRivals from "./NewRivals";
 
 
 
@@ -14,5 +13,6 @@ export{
     Search,
     Profile,
     Cart,
-    ProductDetails
+    ProductDetails,
+    NewRivals
 }

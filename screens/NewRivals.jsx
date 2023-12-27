@@ -1,3 +1,11 @@
-const { Text } = require("react-native");
+import { StyleSheet, View } from "react-native";
+import React from "react";
 
-<Text>DENEME</Text>
+const NewRivals=()=>{
+    return(
+        <View>
+            <Text>NewRivals</Text>
+        </View>
+    )
+}
+export default NewRivals
