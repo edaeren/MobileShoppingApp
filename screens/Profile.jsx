@@ -77,13 +77,13 @@ const Profile =(navigation)=>{
                 </View>
                 <View style={styles.profileContainer}>
                      <Image 
-                        source={require('../assets/images/profile.jpeg')}
+                        source={require('../assets/images/man.jpg')}
                         style={styles.profile}
                     />
-                    {/* <Text style={styles.name}> 
-                    name
-                     {userLogin=== userData ? "userData.name":"Please login into your account"} 
-                    </Text>  */}
+                     <Text style={styles.name}> 
+                         Robert
+                     {/* {userLogin=== userData ? "userData.name":"Please login into your account"}  */}
+                    </Text>  
 
                     {/*  backend eklenince yapilacak 
                     {userLogin=== false ? (   */}
