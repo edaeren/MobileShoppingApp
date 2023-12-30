@@ -19,7 +19,7 @@ const NewRivals=({navigation})=>{
                     </TouchableOpacity>
                     <Text style={styles.heading}> Products </Text>
                 </View>
-                
+                <ProductList/>
             </View>
        </SafeAreaView>
     )

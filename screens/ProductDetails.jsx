@@ -1,10 +1,16 @@
 import { Image, Text, View ,TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
+import { useRoute } from '@react-navigation/native';
 import {Ionicons,SimpleLineIcons,MaterialCommunityIcons,Fontisto} from '@expo/vector-icons';
 import styles from './productDetails.style'
 import { COLORS, SIZES } from '../constants';
 
 const ProductDetails = ({navigation}) => {
+  const route= useRoute();
+  const {item} =route.params;
+  
+
+
   const [count,setCount]= useState(1)
 
   const increment = () => {
@@ -32,14 +38,17 @@ const ProductDetails = ({navigation}) => {
       </View>
 
       <Image
-       source={{uri:"https://img.freepik.com/free-photo/sofa-green-living-room-with-copy-space_43614-905.jpg?w=2000&t=st=1703659273~exp=1703659873~hmac=97e33427fb11198fab737cfbc3136e56cf6e14f9ebd07b2215cc5ca6d53891bc"}}
+        source={{
+          uri:item.imageUrl,
+        }}
+       //source={{uri:"https://img.freepik.com/free-photo/sofa-green-living-room-with-copy-space_43614-905.jpg?w=2000&t=st=1703659273~exp=1703659873~hmac=97e33427fb11198fab737cfbc3136e56cf6e14f9ebd07b2215cc5ca6d53891bc"}}
        style={styles.image}
        />
        <View style={styles.details}>
           <View style={styles.titleRow}>
-              <Text style={styles.title}>Product</Text>
+              <Text style={styles.title}>{item.title}</Text>
               <View style={styles.priceWrapper}>
-              <Text style={styles.price}>$660.88</Text>
+              <Text style={styles.price}>{item.price}</Text>
               </View>
           </View>
 
@@ -72,7 +81,7 @@ const ProductDetails = ({navigation}) => {
           <View style={styles.descriptionWrapper}>
             <Text style={styles.description}>Description</Text>
             <Text style={styles.descText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {item.description}
             </Text>
           </View>
 
@@ -80,7 +89,7 @@ const ProductDetails = ({navigation}) => {
             <View style={styles.location}>
               <View style={{flexDirection:"row"}}>
                 <Ionicons name='location-outline' size={20}/>
-                <Text>  Dallas </Text>
+                <Text>  {item.product_location} </Text>
               </View>
 
               <View style={styles.location}>

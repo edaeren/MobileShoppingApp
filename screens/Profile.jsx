@@ -5,9 +5,13 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons,SimpleLineIcons} from "@expo/vector-icons";
 
-const Profile =(navigation)=>{
-    //const[userData,setUserData]=useState(null)
-    //const[userLogin,setUserLogin]=useState(false) burayi true yaparsan kullanici adi ve mail gozukuyor
+
+const Profile =({navigation})=>{
+    
+    const[userData,setUserData]=useState(null)
+
+    //burayi true yaparsak kullanici adi ve maili gozukecek
+    const[userLogin,setUserLogin]=useState(true) 
    
     const logout=()=>{
         Alert.alert(
@@ -60,11 +64,7 @@ const Profile =(navigation)=>{
             ]
         )
     }
-
-    
-   
-   
-   
+ 
     return(
         <View style={styles.container}>
             <View style={styles.container}>
@@ -81,114 +81,113 @@ const Profile =(navigation)=>{
                         style={styles.profile}
                     />
                      <Text style={styles.name}> 
-                         Robert
-                     {/* {userLogin=== userData ? "userData.name":"Please login into your account"}  */}
+                    
+                      {userLogin === true ? "Andre" : "Please login into your account"} 
                     </Text>  
 
-                    {/*  backend eklenince yapilacak 
-                    {userLogin=== false ? (   */}
-                        <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
-                            <View style={styles.loginBtn}>
-                              <Text style={styles.menuText}>L O G I N    </Text>
-                            </View>
-                        </TouchableOpacity>
-                     {/*    } ):(       */}
+                    {userLogin === false ? (  
+                            <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+                                <View style={styles.loginBtn}>
+                                <Text style={styles.menuText}>L O G I N    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        ):(      
                         <View style={styles.loginBtn}>
-                            <Text style={styles.menuText}>user@outlook.com   </Text>
+                            <Text style={styles.menuText}> user@outlook.com   </Text>
                         </View>
-                     {/*   )  
+                        )  
 
-                    }     */}
+                    }   
 
 
-                    {/*  backend eklenince yapilacak 
-                    {userLogin=== false ? ( //user is not clocked in
+                    {userLogin=== false ? ( 
                       <View></View>
-                ):(  */}     
+                    ):(      
 
-                       <View style={styles.menuWrapper}>
-                            <TouchableOpacity onPress={()=>{}}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <MaterialCommunityIcons
-                                        name="heart-outline"
-                                         color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Favourites</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
+                            <View style={styles.menuWrapper}>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('Favorites')}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <MaterialCommunityIcons
+                                                name="heart-outline"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Favorites</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
 
 
-                             <TouchableOpacity onPress={()=>{}}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <MaterialCommunityIcons
-                                        name="truck-delivery-outline"
-                                         color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Orders</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>navigation.navigate('Orders')}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <MaterialCommunityIcons
+                                                name="truck-delivery-outline"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Orders</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
 
-                             <TouchableOpacity onPress={()=>{}}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <SimpleLineIcons
-                                        name="bag"
-                                         color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Cart</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>{}}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <SimpleLineIcons
+                                                name="bag"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Cart</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
 
-                             <TouchableOpacity onPress={()=>clearCache()}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <MaterialCommunityIcons
-                                        name="cached"
-                                         color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Clear cache</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>clearCache()}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <MaterialCommunityIcons
+                                                name="cached"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Clear cache</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
 
-                            <TouchableOpacity onPress={()=>deleteAccount()}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <AntDesign
-                                        name="deleteuser"
-                                         color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Delete Account</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
+                                    <TouchableOpacity onPress={()=>deleteAccount()}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <AntDesign
+                                                name="deleteuser"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Delete Account</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
 
-                            <TouchableOpacity onPress={()=>logout()}>
-                                <View style={styles.menuItem(0.2)}>
-                                    <AntDesign
-                                        name="logout"
-                                        color={COLORS.primary}
-                                        size={24}   
-                                    
-                                    />
-                                    <Text style={styles.menuText}>Logout</Text>
-                                
-                                </View>
-                            </TouchableOpacity>
-                       </View>
-                  {/*  )     
+                                    <TouchableOpacity onPress={()=>logout()}>
+                                        <View style={styles.menuItem(0.2)}>
+                                            <AntDesign
+                                                name="logout"
+                                                color={COLORS.primary}
+                                                size={24}   
+                                            
+                                            />
+                                            <Text style={styles.menuText}>Logout</Text>
+                                        
+                                        </View>
+                                    </TouchableOpacity>
+                            </View>
+                        
+                        )     
 
-                    }  */}
+                    }  
                 </View>
             </View>
         </View>
