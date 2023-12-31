@@ -11,7 +11,7 @@ const Profile =({navigation})=>{
     const[userData,setUserData]=useState(null)
 
     //burayi true yaparsak kullanici adi ve maili gozukecek
-    const[userLogin,setUserLogin]=useState(true) 
+    const[userLogin,setUserLogin]=useState(false) 
    
     const logout=()=>{
         Alert.alert(

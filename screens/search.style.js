@@ -46,5 +46,5 @@ const styles=StyleSheet.create({
         opacity:0.9,
         
     }
-});
-export default styles;
+})
+export default styles
