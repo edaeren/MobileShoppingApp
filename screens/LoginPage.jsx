@@ -7,6 +7,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import { COLORS } from "../constants";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const validationSchema= Yup.object().shape({
     password: Yup.string()
@@ -28,16 +30,60 @@ const LoginPage=({navigation})=>{
             "Please provide all required fields",
             [
                 {
-                    text:"Cancel", onPress:()=>console.log("")
+                    text:"Cancel", onPress:()=>console.log(""),
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("")
+                    text:"Continue", onPress:()=>console.log(""),
                 },
                 {defaultIndex: 1}
 
             ]
         )
-    }
+    };
+
+    const login = async(values)=>{
+        setLoader(true)
+        try {
+            const endpoint="http://10.22.121.242:3000/api/login";
+            const data= values;
+
+            const response= await axios.post(endpoint,data);
+            if(response.status === 200){
+                setLoader(false);
+                setResponseData(response.data);
+            
+                await AsyncStorage.setItem(
+                    `user${responseData._id}`,
+                    JSON.stringify(responseData));
+                await AsyncStorage.setItem("id",JSON.stringify(responseData._id));
+                navigation.replace('Bottom Navigation')
+            }else {
+                Alert.alert("Error login in", "Please provide valid credentials",
+                    [
+                        {
+                            text:"Cancel", onPress:()=>{},
+                        },
+                        {
+                            text:"Continue", onPress:()=>{},
+                        },
+                        {defaultIndex: 1},
+                    ]
+                );  
+            }
+        } catch (error) {
+            Alert.alert("Error","Oops, Error loggin in try again with correct credentials",[
+                {
+                    text:"Cancel", onPress:()=>{},
+                },
+                {
+                    text:"Continue", onPress:()=>{},
+                },
+                    {defaultIndex: 1},
+            ]); 
+        }finally{
+            setLoader(false);
+        }  
+    };  
    
     return(
         <View>
@@ -53,7 +99,7 @@ const LoginPage=({navigation})=>{
                         <Formik
                             initialValues={{ email:"",password:""}}
                             validationSchema={validationSchema}
-                            onSubmit={values => console.log(values)}
+                            onSubmit={values => login(values)}
                         >
 
                             {({ handleChange, handleBlur,touched, handleSubmit,values,errors,isValid, setFieldTouched }) => (
@@ -117,7 +163,11 @@ const LoginPage=({navigation})=>{
                                     </View>        
 
 
-                                    <Button title={"L O G I N"} onPress={isValid ? handleSubmit:inValidForm} isValid={isValid}/>
+                                    <Button 
+                                    loader={loader}
+                                    title={"L O G I N"} 
+                                    onPress={isValid ? handleSubmit:inValidForm}
+                                     isValid={isValid}/>
                                     <Text style={styles.registration} onPress={()=>{navigation.navigate('SignUp')}}> Register </Text>
                                </View>
                             )}

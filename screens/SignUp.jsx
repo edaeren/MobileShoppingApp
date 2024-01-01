@@ -35,16 +35,19 @@ const SignUp=({navigation})=>{
             "Please provide all required fields",
             [
                 {
-                    text:"Cancel", onPress:()=>console.log("")
+                    text:"Cancel", onPress:()=>console.log(""),
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("")
+                    text:"Continue", onPress:()=>console.log(""),
                 },
                 {defaultIndex: 1}
 
             ]
         )
-    }
+    };
+
+
+
 
     return(
         <ScrollView>
