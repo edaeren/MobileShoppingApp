@@ -1,4 +1,4 @@
-import { Text,ScrollView, View, TouchableOpacity ,Image,TextInput} from "react-native";
+import { Text,ScrollView, View, TouchableOpacity ,Image,TextInput,Alert} from "react-native";
 import React, {useState} from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./login.style";
@@ -21,6 +21,23 @@ const LoginPage=({navigation})=>{
     const [loader,setLoader]=useState(false);
     const [responseData,setResponseData]= useState(null);
     const [obsecureText,setObsecureText]=useState(false);
+
+    const inValidForm=()=>{
+        Alert.alert(
+            "Invalid Form",
+            "Please provide all required fields",
+            [
+                {
+                    text:"Cancel", onPress:()=>console.log("")
+                },
+                {
+                    text:"Continue", onPress:()=>console.log("")
+                },
+                {defaultIndex: 1}
+
+            ]
+        )
+    }
    
     return(
         <View>
@@ -34,9 +51,9 @@ const LoginPage=({navigation})=>{
                         />
                         <Text style={styles.title}>Unlimited Luxurious Furniture</Text>
                         <Formik
-                            initialValues={{email:"",password:""}}
+                            initialValues={{ email:"",password:""}}
                             validationSchema={validationSchema}
-                            onSubmit={(values) => console.log(values)}
+                            onSubmit={values => console.log(values)}
                         >
 
                             {({ handleChange, handleBlur,touched, handleSubmit,values,errors,isValid, setFieldTouched }) => (
@@ -100,7 +117,8 @@ const LoginPage=({navigation})=>{
                                     </View>        
 
 
-                                    <Button title={"L O G I N"} onPress={isValid ?handleSubmit:()=>{}} isValid={isValid}/>
+                                    <Button title={"L O G I N"} onPress={isValid ? handleSubmit:inValidForm} isValid={isValid}/>
+                                    <Text style={styles.registration} onPress={()=>{navigation.navigate('SignUp')}}> Register </Text>
                                </View>
                             )}
 
