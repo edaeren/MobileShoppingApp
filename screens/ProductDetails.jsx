@@ -36,7 +36,7 @@ const ProductDetails = ({navigation}) => {
       const id = AsyncStorage.getItem('id');
       if (id !== null) {
         setLoggedIn(true)
-        console.log(isLoggedIn)
+        console.log("user girdi mi :"+isLoggedIn)
       }else{
         console.log('user not logged in')
       }
@@ -47,7 +47,7 @@ const ProductDetails = ({navigation}) => {
 
   const addToFavorites = async ()=> {
     const id = await AsyncStorage.getItem('id');
-    const favoritesId = `favorites${JSON.parse(id)}`
+    const favoritesId = `favorites ${JSON.parse(id)}`
 
     //console.log(favoriteId); şu anda null değer döndürüyor
     let productId = item._id;
@@ -82,7 +82,7 @@ const ProductDetails = ({navigation}) => {
 
   const checkFavorites = async () => {
     const id = await AsyncStorage.getItem('id');
-    const favoritesId = `favorites${JSON.parse(id)}`
+    const favoritesId = `favorites ${JSON.parse(id)}`
 
     console.log(favoritesId);
 
@@ -103,15 +103,15 @@ const ProductDetails = ({navigation}) => {
   };
 
   const handlePress = async () => {
-    if(isLoggedIn){
-      addToFavorites();
-    }else{
+    if(isLoggedIn === false){
       navigation.navigate('Login')
+    }else{
+      addToFavorites();
     }
   };
   
   const handleBuy = async () => {
-    if(isLoggedIn){
+    if(isLoggedIn === false){
       navigation.navigate('Login')
     }else{
       console.log("pressed");
@@ -119,10 +119,10 @@ const ProductDetails = ({navigation}) => {
   };
 
   const handleCart = async () => {
-    if(isLoggedIn){
+    if(isLoggedIn === false){
       navigation.navigate('Login')
     }else{
-      AddToCart(item._id,count)
+      AddToCart(item._id,count);
     }
   };
 
