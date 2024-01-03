@@ -4,10 +4,10 @@ import axios from "axios";
 const AddToCart = async(productId,quantity) => {
     try {
         const token  =  await AsyncStorage.getItem('token');
-        const endpoint ='http://172.16.0.109:3000/api/cart';
+        const endpoint ='http://192.168.1.36:3000/api/cart';
 
-        console.log(token);
-
+        console.log("Buraya gelen token :"+token);
+        
         const data ={
             cartItem : productId,
             quantity : quantity
@@ -17,7 +17,7 @@ const AddToCart = async(productId,quantity) => {
             'Content-Type' : 'application/json',
             'token' : 'Bearer '+JSON.parse(token)
         };
-
+        console.log("gönderilern bilgiler: " + data.cartItem + " quantity: "+data.quantity + " headers : " + {headers})
         await axios.post(endpoint,data,{headers})
     } catch (error) {
         throw new Error(error.message)

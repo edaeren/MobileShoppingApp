@@ -22,7 +22,7 @@ app.use('/api/products/',productRouter)
 app.use('/api/',authRouter)
 app.use('/api/users/',userRouter)
 app.use('/api/orders/',orderRouter)
-app.use('/api/carts/',cartRouter)
+app.use('/api/cart/',cartRouter)
 
 
 //app.get('/', (req, res) => res.send('Furnite World')) //tarayıcıda localhost:3000 'e giridğimiz zaman ekranda bu çıktı alıyoruz
