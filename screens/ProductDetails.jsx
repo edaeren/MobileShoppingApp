@@ -103,7 +103,7 @@ const ProductDetails = ({navigation}) => {
   };
 
   const handlePress = async () => {
-    if(!isLoggedIn){
+    if(isLoggedIn){
       navigation.navigate('Login')
     }else{
       addToFavorites();
