@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         letterSpacing:2,
         marginLeft:SIZES.small
     },
-    favContainer:{
+    favContainer: (color)=>({
         flex :1,
         justifyContent:"space-between",
         alignItems:"center",
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.xSmall,
         padding: SIZES.small,
         borderRadius: SIZES.small,
-        backgroundColor:"#FFF",
+        backgroundColor:color,
         ...SHADOWS.medium,
         shadowColor: COLORS.secondary
-    },
+    }),
     imageContainer:{
         width:70,
         borderRadius: SIZES.medium,
@@ -43,6 +43,18 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.small,
         resizeMode:"cover"
     },
+    productTxt:{
+        fontSize: SIZES.medium,
+        fontFamily: "bold",
+        color:COLORS.primary
+    },
+    supplya:{
+        fontSize: SIZES.small +2,
+        fontFamily: "regular",
+        color:COLORS.gray,
+        marginTop:3,
+        textTransform: "capitalize"
+    }
 })
 
 export default styles;
