@@ -20,7 +20,7 @@ const fetchCart = async ()=> {
             };
 
             const response = await axios.get(endpoint,{headers});
-
+            //yorum
             //const newData = JSON.stringify(response.data);
             //const parsedData = JSON.parse(newData);
 
