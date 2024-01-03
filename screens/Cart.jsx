@@ -6,7 +6,7 @@ import { COLORS } from "../constants";
 import styles from './cart.style';
 import fetchCart from '../hook/fetchCart';
 import { FlatList } from 'react-native-gesture-handler';
-import cartTile from '../components/cart/cartTitle';
+import cartTile from '../components/cart/CartTile';
 import { Button } from '../components';
 
 const Cart =({navigation})=>{
