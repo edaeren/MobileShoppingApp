@@ -122,6 +122,7 @@ const ProductDetails = ({navigation}) => {
     if(isLoggedIn === false){
       navigation.navigate('Login')
     }else{
+      console.log("Giden item id: "+item._id + "  adedi :" + count);
       AddToCart(item._id,count);
     }
   };
