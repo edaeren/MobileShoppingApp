@@ -8,6 +8,8 @@ import * as Yup from 'yup';
 import {MaterialCommunityIcons,Ionicons} from "@expo/vector-icons";
 import { COLORS } from "../constants";
 import LoginPage from "./LoginPage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const validationSchema= Yup.object().shape({
     password: Yup.string()
@@ -46,6 +48,21 @@ const SignUp=({navigation})=>{
         )
     };
 
+    const registerUser= async(values)=>{
+        setLoader(true);
+        try {
+            const endpoint='http://172.16.0.109:3000/api/register';
+            const data=values;
+
+            const response =await axios.post(endpoint,data);
+            if(response.status===201){
+                navigation.replace('Login')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
 
 
 
@@ -62,7 +79,7 @@ const SignUp=({navigation})=>{
                 <Formik
                     initialValues={{ email:"",password:"",location:"",username:""}}
                     validationSchema={validationSchema}
-                    onSubmit={values => console.log(values)}
+                    onSubmit={values => registerUser(values)}
                 >
 
                     {({ handleChange, handleBlur,touched, handleSubmit,values,errors,isValid, setFieldTouched }) => (
@@ -93,36 +110,6 @@ const SignUp=({navigation})=>{
                                     <Text style={styles.errorMessage}>{errors.username}</Text>
                                 )}
                             </View>
-
-
-
-
-                        <View style={styles.wrapper}>
-                                                        <Text style={styles.label}>Email</Text>
-                                                        <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
-                                                            <MaterialCommunityIcons
-                                                                name='email-outline'
-                                                                size={20}
-                                                                color={COLORS.gray}
-                                                                style={styles.iconStyle}     
-                                                            />
-                                                            <TextInput
-                                                                placeholder="Enter email"
-                                                                onFocus={()=>{setFieldTouched('email')}}
-                                                                onBlur={()=>{setFieldTouched('email','')}}
-                                                                value={values.email}
-                                                                onChangeText={handleChange('email')}
-                                                                autoCapitalize="none"
-                                                                autoCorrect={false}
-                                                                style={{flex:1}}
-
-                                                            />
-                                                        </View>
-                                                        {touched.email && errors.email &&(
-                                                            <Text style={styles.errorMessage}>{errors.email}</Text>
-                                                        )}
-                        </View>
-
 
                             <View style={styles.wrapper}>
                                 <Text style={styles.label}>Email</Text>
@@ -162,7 +149,7 @@ const SignUp=({navigation})=>{
                                         placeholder="Enter location"
                                         onFocus={()=>{setFieldTouched("location")}}
                                         onBlur={()=>{setFieldTouched('location',"")}}
-                                        value={values.email}
+                                        value={values.location}
                                         onChangeText={handleChange("location")}
                                         autoCapitalize="none"
                                         autoCorrect={false}
@@ -208,8 +195,11 @@ const SignUp=({navigation})=>{
                             </View>        
 
 
-                            <Button title={"S I G N  U P"} onPress={isValid ? handleSubmit:inValidForm} isValid={isValid}/>
-                            <Text style={styles.registration} onPress={()=>{navigation.navigate('SignUp')}}> Register </Text>
+                            <Button title={"S I G N  U P"} 
+                            onPress={isValid ? handleSubmit:inValidForm} 
+                            loader={loader}
+                            isValid={isValid}/>
+                           
                        </View>
                     )}
 

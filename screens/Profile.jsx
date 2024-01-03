@@ -4,7 +4,7 @@ import styles from './profile.style';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons,SimpleLineIcons} from "@expo/vector-icons";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile =({navigation})=>{
     
@@ -12,7 +12,43 @@ const Profile =({navigation})=>{
 
     //burayi true yaparsak kullanici adi ve maili gozukecek
     const[userLogin,setUserLogin]=useState(false) 
+
+    useEffect(()=>{
+        checkExistingUser();
+    },[]);
+
+    const checkExistingUser= async()=>{
+        const id = await AsyncStorage.getItem('id')
+        const useId = `user${JSON.parse(id)}`;
+
+        try {
+            const currentUser=await AsyncStorage.getItem(useId);
+
+            if(currentUser!==null){
+                const parsedData=JSON.parse(currentUser)
+                setUserData(parsedData)
+                setUserLogin(true)
+            }else{
+                navigation.navigate('Login')
+            }
+            
+        } catch (error) {
+            console.log("Error retrieving the data:", error)
+        }
+    };
    
+    const userLogout=async()=>{
+        const id = await AsyncStorage.getItem('id')
+        const useId = `user${JSON.parse(id)}`;
+        try {
+            await AsyncStorage.multiRemove([useId,'id']);
+            navigation.replace('Bottom Navigation')
+        } catch (error) {
+            console.log("Error loggin out the user:", error)
+        }
+
+    };
+
     const logout=()=>{
         Alert.alert(
             "Logout",
@@ -22,7 +58,7 @@ const Profile =({navigation})=>{
                     text:"Cancel", onPress:()=>console.log("cancel pressed")
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("logout pressed")
+                    text:"Continue", onPress:()=>userLogout()
                 },
                 {defaultIndex: 1}
 

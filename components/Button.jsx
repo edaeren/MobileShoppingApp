@@ -5,8 +5,10 @@ import { COLORS } from "../constants";
 
 const Button=({title, onPress,isValid,loader})=>{
     return(
-        <TouchableOpacity onPress={onPress}  style={styles.btnStyle(isValid===false? COLORS.gray:COLORS.primary)}>
-            {loader ===false ? 
+        <TouchableOpacity 
+         onPress={onPress}  
+         style={styles.btnStyle(!isValid? COLORS.gray:COLORS.primary)}>
+            {!loader ? 
             (<Text style={styles.btnText}>{title}</Text>
             ): (
             <ActivityIndicator/>

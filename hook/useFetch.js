@@ -12,7 +12,7 @@ const useFetch =()=>{
         setIsLoading(true)
         try {
             //const response = await axios.get('http://172.16.0.109:3000/api/products/')
-            const response = await axios.get('http://10.22.121.242:3000/api/products/')
+            const response = await axios.get('http://172.16.0.109:3000/api/products/')
             setData(response.data)
             setIsLoading(false)
 
