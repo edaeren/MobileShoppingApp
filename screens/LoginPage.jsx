@@ -55,6 +55,7 @@ const LoginPage=({navigation})=>{
                 await AsyncStorage.setItem(
                     `user${responseData._id}`,
                     JSON.stringify(responseData));
+
                 await AsyncStorage.setItem("id",JSON.stringify(responseData._id));
                 navigation.replace('Bottom Navigation')
             }else {

@@ -55,7 +55,7 @@ const SignUp=({navigation})=>{
             const data=values;
 
             const response =await axios.post(endpoint,data);
-            if(response.status===201){
+            if(response.status === 201){
                 navigation.replace('Login')
             }
         } catch (error) {

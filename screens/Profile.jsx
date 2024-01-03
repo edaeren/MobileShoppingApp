@@ -6,7 +6,9 @@ import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons,SimpleLineIcons} from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const Profile =({navigation})=>{
+    
     
     const[userData,setUserData]=useState(null)
 
@@ -113,12 +115,12 @@ const Profile =({navigation})=>{
                 </View>
                 <View style={styles.profileContainer}>
                      <Image 
-                        source={require('../assets/images/man.jpg')}
+                        source={require('../assets/images/userPic.jpg')}
                         style={styles.profile}
                     />
                      <Text style={styles.name}> 
                     
-                      {userLogin === true ? "Andre" : "Please login into your account"} 
+                      {userLogin === true ? userData.username : "Please login into your account"} 
                     </Text>  
 
                     {userLogin === false ? (  
@@ -129,7 +131,7 @@ const Profile =({navigation})=>{
                             </TouchableOpacity>
                         ):(      
                         <View style={styles.loginBtn}>
-                            <Text style={styles.menuText}> user@outlook.com   </Text>
+                            <Text style={styles.menuText}> {userData ? userData.email:''}   </Text>
                         </View>
                         )  
 

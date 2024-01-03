@@ -87,7 +87,7 @@ const ProductDetails = ({navigation}) => {
     console.log(favoritesId);
 
     try {
-      const favoritesObj = await AsyncStorage.getItem(favoriteId);
+      const favoritesObj = await AsyncStorage.getItem(favoritesId);
       if(favoritesObj !== null){
         const favorites = JSON.parse(favoritesObj);
 
@@ -104,9 +104,9 @@ const ProductDetails = ({navigation}) => {
 
   const handlePress = async () => {
     if(isLoggedIn){
-      navigation.navigate('Login')
-    }else{
       addToFavorites();
+    }else{
+      navigation.navigate('Login')
     }
   };
   

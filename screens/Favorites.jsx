@@ -1,8 +1,7 @@
-import { StyleSheet,View,Text,Image} from "react-native";
+import { StyleSheet,View,Text,Image,FlatList,TouchableOpacity} from "react-native";
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import styles from "./favorites.style";
 import {Ionicons,SimpleLineIcons} from "@expo/vector-icons";
 import { COLORS } from "../constants";
@@ -75,35 +74,38 @@ const Favorites=({navigation})=>{
 
             </View>
 
-            <FlatList
-                data={favData}
-                renderItem={({item}) => (
-                    <View style={styles.favContainer}>
+            <View style={styles.container}>
+                
+                <FlatList
+                    data={favData}
+                    renderItem={({item}) => (
+                        <View style={styles.favContainer}>
 
-                        <View style={styles.imageContainer}>
-                            <Image
-                                source={{uri:item.imageUrl}}
-                                style={styles.image}
+                            <View style={styles.imageContainer}>
+                                <Image
+                                    source={{uri:item.imageUrl}}
+                                    style={styles.image}
+                                />
+                            </View>
+
+                            <View style={styles.textContainer}>
+                                <Text style ={styles.fav}>{item.title}</Text>
+                                <Text style ={styles.supplier}>{item.supplier}</Text>
+                                <Text style ={styles.supplier}>{item.price}</Text>
+                            </View>
+
+                            
+                            <SimpleLineIcons
+                                onPress={()=> deleteFavorites(item.id)}
+                                name='trash'
+                                size={24}
+                                color={COLORS.red}
                             />
-                        </View>
-
-                        <View style={styles.textContainer}>
-                            <Text style ={styles.fav}>{item.title}</Text>
-                            <Text style ={styles.supplier}>{item.supplier}</Text>
-                            <Text style ={styles.supplier}>{item.price}</Text>
-                        </View>
-
-                        
-                        <SimpleLineIcons
-                            onPress={()=> deleteFavorites(item.id)}
-                            name='trash'
-                            size={24}
-                            color={COLORS.red}
-                        />
-                        
-                    </View>)}
-                keyExtractor={(item, index)=> index.toString()}
-            ></FlatList>
+                            
+                        </View>)}
+                    keyExtractor={(item, index)=> index.toString()}
+                />
+            </View>
        </SafeAreaView>
     )
 }
