@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import {Ionicons,SimpleLineIcons,MaterialCommunityIcons,Fontisto} from '@expo/vector-icons';
 import styles from './productDetails.style'
 import { COLORS, SIZES } from '../constants';
-import AddToCart from '../hook/AddToCart';
+import AddToCart from '../hook/addToCart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
