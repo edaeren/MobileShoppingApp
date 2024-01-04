@@ -11,6 +11,7 @@ module.exports ={
             email: req.body.email,
             location: req.body.location,
             password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET).toString(),
+            admin : req.body.admin
         });
 
         try {
