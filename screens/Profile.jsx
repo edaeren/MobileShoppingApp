@@ -68,20 +68,35 @@ const Profile =({navigation})=>{
         )
     }
 
-    const clearCache=()=>{
+    const addProduct=()=>{
         Alert.alert(
-            "Clear Cache",
-            "Are you sure you want to delete all saved data on your device?",
+            "Add Product",
+            "Are you sure you want to add product?",
             [
                 {
-                    text:"Cancel", onPress:()=>console.log("cancel clear cache")
+                    text:"Cancel", onPress:()=>console.log("cancel add product")
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("clear cache pressed")
+                    text:"Continue", onPress:()=>console.log("product added")
                 },
                 {defaultIndex: 1}
 
             ]
+        )
+    }
+
+    const addProductButton=()=>{
+        return(
+            <TouchableOpacity onPress={()=>addProduct() }>
+                <View style={styles.menuItem(0.2)}>
+                    <MaterialCommunityIcons
+                        name="plus"
+                        color={COLORS.primary}
+                        size={24}                     
+                        />
+                        <Text style={styles.menuText}>Add Product</Text>                  
+                </View>
+            </TouchableOpacity>
         )
     }
 
@@ -183,18 +198,7 @@ const Profile =({navigation})=>{
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={()=>clearCache()}>
-                                        <View style={styles.menuItem(0.2)}>
-                                            <MaterialCommunityIcons
-                                                name="cached"
-                                                color={COLORS.primary}
-                                                size={24}   
-                                            
-                                            />
-                                            <Text style={styles.menuText}>Clear cache</Text>
-                                        
-                                        </View>
-                                    </TouchableOpacity>
+                                    {userData.admin === "1" ? addProductButton(): <View></View>}
 
                                     <TouchableOpacity onPress={()=>deleteAccount()}>
                                         <View style={styles.menuItem(0.2)}>
