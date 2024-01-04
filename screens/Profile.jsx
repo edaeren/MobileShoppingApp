@@ -77,7 +77,7 @@ const Profile =({navigation})=>{
                     text:"Cancel", onPress:()=>console.log("cancel add product")
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("product added")
+                    text:"Continue", onPress:()=>navigation.navigate('ProductAddPage')
                 },
                 {defaultIndex: 1}
 
