@@ -109,7 +109,7 @@ const Profile =({navigation})=>{
                 <StatusBar backgroundColor={COLORS.gray}/>
                 <View style={{width:'100%'}}>
                     <Image 
-                        source={require('../assets/images/space.jpg')}
+                        source={require('../assets/images/back_2.jpg')}
                         style={styles.cover}
                     />
                 </View>

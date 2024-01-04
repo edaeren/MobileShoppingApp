@@ -154,7 +154,6 @@ const ProductDetails = ({navigation}) => {
               <Text style={styles.price}>{item.price}</Text>
               </View>
           </View>
-
           <View style={styles.ratingRow}> 
               <View style={styles.rating}>
                   {[1,2,3,4,5].map((index)=>(
