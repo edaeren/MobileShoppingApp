@@ -15,7 +15,7 @@ module.exports = {
                 );
 
                 if(existingProduct){
-                    existingProduct.quantity += 1
+                    existingProduct.quantity += quantity
                 }else{
                     cart.products.push({cartItem,quantity})
                 }
