@@ -37,16 +37,17 @@ const ProductAddPage= ({navigation}) => {
     const addPro = async(values)=>{
         setLoader(true);
         try {
-            const endpoint='http://51.20.253.218:3000/api/products';
+            const endpoint='http://13.50.5.82:3000/api/products';
             const data=values;
 
             const response =await axios.post(endpoint,data);
-            if(response.status === 201){
-                navigation.replace('Login')
+            if(response.status === 200){
+                navigation.navigate('Profile')
             }
         }catch (error) {
             console.log(error)
         }
+        finally{setLoader(false)}
     };
 
     const inValidForm=()=>{
