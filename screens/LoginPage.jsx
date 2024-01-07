@@ -44,7 +44,7 @@ const LoginPage=({navigation})=>{
     const login = async(values)=>{
         setLoader(true)
         try {
-            const endpoint="http://192.168.1.60:3000/api/login";
+            const endpoint="http://51.20.253.218:3000/api/login";
             const data= values;
 
             const response= await axios.post(endpoint,data);

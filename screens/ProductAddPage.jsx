@@ -37,7 +37,7 @@ const ProductAddPage= ({navigation}) => {
     const addPro = async(values)=>{
         setLoader(true);
         try {
-            const endpoint='http://192.168.1.39:3000/api/products';
+            const endpoint='http://51.20.253.218:3000/api/products';
             const data=values;
 
             const response =await axios.post(endpoint,data);
