@@ -4,7 +4,7 @@ import styles from '../../screens/cart.style'
 import {AntDesing} from '@expo/vector-icons'
 import { COLORS } from '../../constants'
 
-const cartTile = ({item, onPress,select}) =>{
+const CartTile = ({item, onPress,select}) =>{
     return(
         <TouchableOpacity style ={styles.favContainer(!select ? "#FFF": COLORS.secondary)} onPress={onPress}>
             <View style ={styles.imageContainer}>
@@ -34,4 +34,4 @@ const cartTile = ({item, onPress,select}) =>{
     )
 }
 
-export default cartTile
+export default CartTile

@@ -9,7 +9,7 @@ const fetchCart = async ()=> {
 
     const fetchData = async() =>{
         setLoader(true);
-        const token = await AsyncStorage.getItem('token').toString();
+        const token = await AsyncStorage.getItem('token');
 
         try {
             const endpoint ='http://172.16.0.109:3000/api/cart/find';
@@ -25,6 +25,7 @@ const fetchCart = async ()=> {
             //const parsedData = JSON.parse(newData);
 
             const cartProducts = response.data[0].products;
+            console.log("Cart Product:"+cartProducts);
             //await AsyncStorage.setItem('cartCount',JSON.stringify(products.length));
             setData(cartProducts);
 

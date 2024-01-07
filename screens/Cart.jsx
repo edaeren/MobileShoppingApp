@@ -6,7 +6,7 @@ import { COLORS } from "../constants";
 import styles from './cart.style';
 import fetchCart from '../hook/fetchCart';
 import { FlatList } from 'react-native-gesture-handler';
-import cartTile from '../components/cart/CartTile';
+import CartTile from '../components/cart/CartTile';
 import { Button } from '../components';
 
 const Cart =({navigation})=>{
@@ -36,7 +36,7 @@ const Cart =({navigation})=>{
             data={data}
             keyExtractor={(item) => item._id}
             renderItem={({item}) => 
-            <cartTile item={item} onPress={()=> {setSelect(!select), setSelected(item)}} select={select} />
+            <CartTile item={item} onPress={()=> {setSelect(!select), setSelected(item)}}select={select}  />
             }
         />)}
         
