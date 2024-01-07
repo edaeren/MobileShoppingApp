@@ -14,7 +14,7 @@ const Cart =({navigation})=>{
     const {data,loading,error,refetch} = fetchCart();
     const [selected,setSelected] = useState(null);
     const [select,setSelect] = useState(false);
-    console.log(selected)
+
     return(
         <SafeAreaView style={styles.container}>
         <View style={styles.titleRow}>

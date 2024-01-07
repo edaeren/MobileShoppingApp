@@ -15,7 +15,7 @@ const products=[1,2,3,4]
       {isLoading ? (
         <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary}/>
       ): error ? (
-        <Text>Veriler getirilemedi...</Text>
+        <Text style={{fontFamily:"bold", color:"red"}}>EĞER BU YAZI GELİYORSA AWS KAPANMIŞ DEMEKTİR. LÜTFEN taha.adiguzel@ogr.sakarya.edu.tr MAİLİNE VEYA 05428007345 NUMARAYA MESAJ ATABİLİR MİSİNİZ </Text>
       ):(
         <FlatList
         data={data}
