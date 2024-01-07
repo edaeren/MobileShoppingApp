@@ -51,9 +51,8 @@ const SignUp=({navigation})=>{
     const registerUser= async(values)=>{
         setLoader(true);
         try {
-            const endpoint='http://13.50.5.82/:3000/api/register';
+            const endpoint='http://13.50.5.82:3000/api/register';
             const data=values;
-
             const response =await axios.post(endpoint,data);
             if(response.status === 201){
                 navigation.replace('Login')
@@ -61,6 +60,7 @@ const SignUp=({navigation})=>{
         } catch (error) {
             console.log(error)
         }
+        finally{setLoader(false)}
     };
 
 
