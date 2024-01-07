@@ -4,7 +4,7 @@ import axios from "axios";
 const AddToCart = async(productId,quantity) => {
     try {
         const token  =  await AsyncStorage.getItem('token');
-        const endpoint ='http://51.20.253.218:3000/api/cart';
+        const endpoint ='http://13.50.5.82:3000/api/cart';
 
         console.log("Buraya gelen token :"+token);
         

@@ -12,7 +12,7 @@ const fetchCart = async ()=> {
         const token = await AsyncStorage.getItem('token');
 
         try {
-            const endpoint ='http://51.20.253.218:3000/api/cart/find';
+            const endpoint ='http://13.50.5.82:3000/api/cart/find';
 
             const headers = {
                 'Content-Type' : 'application/json',

@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons,SimpleLineIcons} from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 
 const Profile =({navigation})=>{
@@ -49,6 +50,22 @@ const Profile =({navigation})=>{
             console.log("Error loggin out the user:", error)
         }
 
+    };
+
+    const deleteUser= async()=>{
+        try {
+            const endpoint='http:/13.50.5.82:3000/api/';
+            const id = await AsyncStorage.getItem('id')
+            const useId = `users/${JSON.parse(id)}`;
+            const gonder = endpoint + useId
+            const response =await axios.delete(gonder);
+           
+            if(response.status === 200){
+                navigation.navigate('Home')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     const logout=()=>{
@@ -110,7 +127,7 @@ const Profile =({navigation})=>{
                     text:"Cancel", onPress:()=>console.log("cancel pressed")
                 },
                 {
-                    text:"Continue", onPress:()=>console.log("delete account pressed")
+                    text:"Continue", onPress:()=>deleteUser()
                 },
                 {defaultIndex: 1}
 
