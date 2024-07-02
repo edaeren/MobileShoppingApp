@@ -1,0 +1,1 @@
+This project is an e-commerce mobile application. The application allows users to browse, purchase products and manage their favorite items. The app is designed to provide a seamless shopping experience with features that cater to both users and administrators.
